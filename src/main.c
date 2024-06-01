@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 struct nodespace{
-	int teskid;   // 任务号 
+	int teskid;   // 进程号 
 	int begin;    // 开始地址 
 	int size;     // 大小 
 	int status;   // 状态 0代表占用，1代表空闲 
@@ -106,7 +106,7 @@ void bestAdaptMalloc(int teskid,int size,struct nodespace *node){
  
 void coreFree(int teskid,struct nodespace *node){
 	if(node->next == NULL && node->teskid == -1){
-		printf("还没有分配任何任务！\n");
+		printf("还没有分配任何进程！\n");
 	}
 	
 	while(node != NULL){
@@ -132,8 +132,8 @@ void coreFree(int teskid,struct nodespace *node){
 				free(q);
 			}
 			break;
-		}else if(node->next == NULL){  //任务id不匹配时 
-			printf("没有此任务！\n");
+		}else if(node->next == NULL){  //进程id不匹配时 
+			printf("没有此进程！\n");
 			break;
 		}
 		node = node->next;
@@ -145,7 +145,7 @@ void coreFree(int teskid,struct nodespace *node){
 void printNode(struct nodespace *node){
 	printf("--------CoreAlloc ---------------- 内存情况 ------------ \n"); 
 	printf(" -------------------------------------------------------\n");
-	printf("| 起始地址\t结束地址\t大小\t状态\t任务id\t|\n");
+	printf("| 起始地址\t结束地址\t大小\t状态\t进程id\t|\n");
 	while(node != NULL){
 		if(node->status==1){
 			printf("| %d\t\t%d\t\t%dKB\tfree\t 无\t|\n", node->begin + 1, node->begin+node->size, node->size);
@@ -191,75 +191,75 @@ int main(){
 				printf("请选择算法：\n 1.首次适应算法\n 2.最佳适应算法\n 3.退出\n");
 				scanf("%d",&option);
 				if(option == 1){			//首次适应算法 
-					printf("作业1 申请130 KB\n");
-					firstAdaptMalloc(1,130,node);		//作业1 申请130 KB
+					printf("进程1 申请130 KB\n");
+					firstAdaptMalloc(1,130,node);		//进程1 申请130 KB
 					printNode(node);
-					printf("作业2 申请60 KB\n");
-					firstAdaptMalloc(2,60,node);		//作业2 申请60 KB
+					printf("进程2 申请60 KB\n");
+					firstAdaptMalloc(2,60,node);		//进程2 申请60 KB
 					printNode(node);
-					printf("作业3 申请100 KB\n");
-					firstAdaptMalloc(3,100,node);		//作业3 申请100 KB
+					printf("进程3 申请100 KB\n");
+					firstAdaptMalloc(3,100,node);		//进程3 申请100 KB
 					printNode(node);
-					printf("作业2 释放60 KB\n");
-					coreFree(2,node);			//作业2 释放60 KB
+					printf("进程2 释放60 KB\n");
+					coreFree(2,node);			//进程2 释放60 KB
 					printNode(node);
-					printf("作业4 申请200 KB\n");
-					firstAdaptMalloc(4,200,node);		//作业4 申请200 KB
+					printf("进程4 申请200 KB\n");
+					firstAdaptMalloc(4,200,node);		//进程4 申请200 KB
 					printNode(node);
-					printf("作业3 释放100 KB\n");
-					coreFree(3,node);			//作业3 释放100 KB
+					printf("进程3 释放100 KB\n");
+					coreFree(3,node);			//进程3 释放100 KB
 					printNode(node);
-					printf("作业1 释放130 KB\n");
-					coreFree(1,node);			//作业1 释放130 KB
+					printf("进程1 释放130 KB\n");
+					coreFree(1,node);			//进程1 释放130 KB
 					printNode(node);
-					printf("作业5 申请140 KB\n");
-					firstAdaptMalloc(5,140,node);		//作业5 申请140 KB
+					printf("进程5 申请140 KB\n");
+					firstAdaptMalloc(5,140,node);		//进程5 申请140 KB
 					printNode(node);
-					printf("作业6 申请60 KB\n");
-					firstAdaptMalloc(6,60,node);		//作业6 申请60 KB
+					printf("进程6 申请60 KB\n");
+					firstAdaptMalloc(6,60,node);		//进程6 申请60 KB
 					printNode(node);
-					printf("作业7 申请50 KB\n");
-					firstAdaptMalloc(7,50,node);		//作业7 申请50 KB
+					printf("进程7 申请50 KB\n");
+					firstAdaptMalloc(7,50,node);		//进程7 申请50 KB
 					printNode(node);
-					printf("作业6 释放60 KB\n");
-					coreFree(6,node);			//作业6 释放60 KB
+					printf("进程6 释放60 KB\n");
+					coreFree(6,node);			//进程6 释放60 KB
 					printNode(node);
 					destory(node);	//销毁链表
 					initNode(init);	//重新初始化 
 					node = init;	//重新指向开头 
 				}else if(option == 2){		//最佳适应算法 
-					printf("作业1 申请130 KB\n");
-					bestAdaptMalloc(1,130,node);		//作业1 申请130 KB
+					printf("进程1 申请130 KB\n");
+					bestAdaptMalloc(1,130,node);		//进程1 申请130 KB
 					printNode(node);
-					printf("作业2 申请60 KB\n");
-					bestAdaptMalloc(2,60,node);		//作业2 申请60 KB
+					printf("进程2 申请60 KB\n");
+					bestAdaptMalloc(2,60,node);		//进程2 申请60 KB
 					printNode(node);
-					printf("作业3 申请100 KB\n");
-					bestAdaptMalloc(3,100,node);		//作业3 申请100 KB
+					printf("进程3 申请100 KB\n");
+					bestAdaptMalloc(3,100,node);		//进程3 申请100 KB
 					printNode(node);
-					printf("作业2 释放60 KB\n");
-					coreFree(2,node);			//作业2 释放60 KB
+					printf("进程2 释放60 KB\n");
+					coreFree(2,node);			//进程2 释放60 KB
 					printNode(node);
-					printf("作业4 申请200 KB\n");
-					bestAdaptMalloc(4,200,node);		//作业4 申请200 KB
+					printf("进程4 申请200 KB\n");
+					bestAdaptMalloc(4,200,node);		//进程4 申请200 KB
 					printNode(node);
-					printf("作业3 释放100 KB\n");
-					coreFree(3,node);			//作业3 释放100 KB
+					printf("进程3 释放100 KB\n");
+					coreFree(3,node);			//进程3 释放100 KB
 					printNode(node);
-					printf("作业1 释放130 KB\n");
-					coreFree(1,node);			//作业1 释放130 KB
+					printf("进程1 释放130 KB\n");
+					coreFree(1,node);			//进程1 释放130 KB
 					printNode(node);
-					printf("作业5 申请140 KB\n");
-					bestAdaptMalloc(5,140,node);		//作业5 申请140 KB
+					printf("进程5 申请140 KB\n");
+					bestAdaptMalloc(5,140,node);		//进程5 申请140 KB
 					printNode(node);
-					printf("作业6 申请60 KB\n");
-					bestAdaptMalloc(6,60,node);		//作业6 申请60 KB
+					printf("进程6 申请60 KB\n");
+					bestAdaptMalloc(6,60,node);		//进程6 申请60 KB
 					printNode(node);
-					printf("作业7 申请50 KB\n");
-					bestAdaptMalloc(7,50,node);		//作业7 申请50 KB
+					printf("进程7 申请50 KB\n");
+					bestAdaptMalloc(7,50,node);		//进程7 申请50 KB
 					printNode(node);
-					printf("作业6 释放60 KB\n");
-					coreFree(6,node);			//作业6 释放60 KB
+					printf("进程6 释放60 KB\n");
+					coreFree(6,node);			//进程6 释放60 KB
 					printNode(node);
 					destory(node);	//销毁链表
 					initNode(init);	//重新初始化 
@@ -280,17 +280,17 @@ int main(){
 						menu();		//打印想要进行的操作 
 						scanf("%d",&option);
 						if(option == 1 && n == 1){			//首次适应 
-							printf("请输入任务id以及申请的空间大小:\n");
+							printf("请输入进程id以及申请的空间大小:\n");
 							scanf("%d%d",&teskid,&size);
 							firstAdaptMalloc(teskid,size,node);
 							printNode(node);
 						}else if(option == 1 && n == 2){	//最佳适应 
-							printf("请输入任务id以及申请的空间大小:\n");
+							printf("请输入进程id以及申请的空间大小:\n");
 							scanf("%d%d",&teskid,&size);
 							bestAdaptMalloc(teskid,size,node);
 							printNode(node);
 						}else if(option == 2){
-							printf("请输入任务id:\n");
+							printf("请输入进程id:\n");
 							scanf("%d",&teskid);
 							coreFree(teskid,node);
 							printNode(node);

@@ -104,7 +104,7 @@ void bestAdaptMalloc(int teskid,int size,struct nodespace *node){
 	}		
 }
  
-void myFree(int teskid,struct nodespace *node){
+void coreFree(int teskid,struct nodespace *node){
 	if(node->next == NULL && node->teskid == -1){
 		printf("还没有分配任何任务！\n");
 	}
@@ -143,7 +143,7 @@ void myFree(int teskid,struct nodespace *node){
 }
  
 void printNode(struct nodespace *node){
-	printf("                        内存情况                        \n"); 
+	printf("--------CoreAlloc ---------------- 内存情况 ------------ \n"); 
 	printf(" -------------------------------------------------------\n");
 	printf("| 起始地址\t结束地址\t大小\t状态\t任务id\t|\n");
 	while(node != NULL){
@@ -201,16 +201,16 @@ int main(){
 					firstAdaptMalloc(3,100,node);		//作业3 申请100 KB
 					printNode(node);
 					printf("作业2 释放60 KB\n");
-					myFree(2,node);			//作业2 释放60 KB
+					coreFree(2,node);			//作业2 释放60 KB
 					printNode(node);
 					printf("作业4 申请200 KB\n");
 					firstAdaptMalloc(4,200,node);		//作业4 申请200 KB
 					printNode(node);
 					printf("作业3 释放100 KB\n");
-					myFree(3,node);			//作业3 释放100 KB
+					coreFree(3,node);			//作业3 释放100 KB
 					printNode(node);
 					printf("作业1 释放130 KB\n");
-					myFree(1,node);			//作业1 释放130 KB
+					coreFree(1,node);			//作业1 释放130 KB
 					printNode(node);
 					printf("作业5 申请140 KB\n");
 					firstAdaptMalloc(5,140,node);		//作业5 申请140 KB
@@ -222,7 +222,7 @@ int main(){
 					firstAdaptMalloc(7,50,node);		//作业7 申请50 KB
 					printNode(node);
 					printf("作业6 释放60 KB\n");
-					myFree(6,node);			//作业6 释放60 KB
+					coreFree(6,node);			//作业6 释放60 KB
 					printNode(node);
 					destory(node);	//销毁链表
 					initNode(init);	//重新初始化 
@@ -238,16 +238,16 @@ int main(){
 					bestAdaptMalloc(3,100,node);		//作业3 申请100 KB
 					printNode(node);
 					printf("作业2 释放60 KB\n");
-					myFree(2,node);			//作业2 释放60 KB
+					coreFree(2,node);			//作业2 释放60 KB
 					printNode(node);
 					printf("作业4 申请200 KB\n");
 					bestAdaptMalloc(4,200,node);		//作业4 申请200 KB
 					printNode(node);
 					printf("作业3 释放100 KB\n");
-					myFree(3,node);			//作业3 释放100 KB
+					coreFree(3,node);			//作业3 释放100 KB
 					printNode(node);
 					printf("作业1 释放130 KB\n");
-					myFree(1,node);			//作业1 释放130 KB
+					coreFree(1,node);			//作业1 释放130 KB
 					printNode(node);
 					printf("作业5 申请140 KB\n");
 					bestAdaptMalloc(5,140,node);		//作业5 申请140 KB
@@ -259,7 +259,7 @@ int main(){
 					bestAdaptMalloc(7,50,node);		//作业7 申请50 KB
 					printNode(node);
 					printf("作业6 释放60 KB\n");
-					myFree(6,node);			//作业6 释放60 KB
+					coreFree(6,node);			//作业6 释放60 KB
 					printNode(node);
 					destory(node);	//销毁链表
 					initNode(init);	//重新初始化 
@@ -292,7 +292,7 @@ int main(){
 						}else if(option == 2){
 							printf("请输入任务id:\n");
 							scanf("%d",&teskid);
-							myFree(teskid,node);
+							coreFree(teskid,node);
 							printNode(node);
 						}else if(option == 3){
 							printNode(node);

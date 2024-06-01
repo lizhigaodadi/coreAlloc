@@ -23,10 +23,10 @@ export CFLAGS LDFLAGS
 TOPDIR := $(shell pwd)
 export TOPDIR
 
-TARGET := redis_test
+TARGET := coreAlloc
 
 
-obj-y += init/
+obj-y += src/
 
 
 all : start_recursive_build $(TARGET)
